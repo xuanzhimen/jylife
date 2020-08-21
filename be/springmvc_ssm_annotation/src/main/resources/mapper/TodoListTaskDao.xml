@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.dao.dao.TodoListTaskDao">
+
+    <resultMap type="com.itheima.dao.entity.TodoListTask" id="TodoListTaskMap">
+        <result property="tid" column="tid" jdbcType="INTEGER"/>
+        <result property="lid" column="lid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TodoListTaskMap">
+        select
+          tid, lid
+        from jylife.todo_list_task
+        where tid = #{tid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TodoListTaskMap">
+        select
+          tid, lid
+        from jylife.todo_list_task
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TodoListTaskMap">
+        select
+          tid, lid
+        from jylife.todo_list_task
+        <where>
+            <if test="tid != null">
+                and tid = #{tid}
+            </if>
+            <if test="lid != null">
+                and lid = #{lid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="tid" useGeneratedKeys="true">
+        insert into jylife.todo_list_task()
+        values ()
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update jylife.todo_list_task
+        <set>
+        </set>
+        where tid = #{tid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from jylife.todo_list_task where tid = #{tid}
+    </delete>
+
+</mapper>
