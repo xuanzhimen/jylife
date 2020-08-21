@@ -24,7 +24,8 @@ import {
     TimelineItem,
     Card,
     Tag,
-    DatePicker
+    DatePicker,
+    Drawer
 } from 'element-ui'
 
 
@@ -53,3 +54,4 @@ Vue.use(TimelineItem)
 Vue.use(Card)
 Vue.use(Tag)
 Vue.use(DatePicker)
+Vue.use(Drawer)

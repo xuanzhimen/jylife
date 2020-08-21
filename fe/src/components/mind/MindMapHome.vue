@@ -4,8 +4,6 @@
             <el-menu
                     default-active="2"
                     class="el-menu-vertical-demo"
-                    @open="handleOpen"
-                    @close="handleClose"
                     background-color="#545c64"
                     text-color="#fff"
                     active-text-color="#ffd04b">
@@ -26,34 +24,43 @@
         <div class="mapDiv">
             <div id="map"></div>
         </div>
+        <div class="detailDiv"></div>
+
+        <div id="editor1"></div>
     </div>
 </template>
 
 <script>
+    import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
+
     let mind = null;
+    let vueApp = null;
+    let editor = null;
     export default {
         name: "mindMapHome",
         data() {
             return {
-                mindData: mind.getAllData(),
-                mindDetail: [
-                    {
+                //mindData: mind.getAllData(),
+                mindDetail: {
+                    '111-1': {
                         id: '222-1',
                         parent: '111-1',
-                        content: 'joiafwejoifhoaiwjefoijw'
+                        content: '饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n饭哦按维持哦噶位置你爱我NB芝麻窝陈\n'
                     },
-                    {
+                    '111-2': {
                         id: '222-2',
                         parent: '111-2',
                         content: '噶玩儿法我饿阿尕王二狗'
                     },
-                ]
+                },
+                drawer: true
             };
         },
         watch: {},
         computed: {},
         methods: {},
         mounted() {
+            vueApp = this;
             mind = new this.$mindMap({
                 el: '#map',
                 direction: this.$mindMap.LEFT,
@@ -81,27 +88,51 @@
                 draggable: true, // default true
                 contextMenu: true, // default true
                 toolBar: true, // default true
-                nodeMenu: true, // default true
+                nodeMenu: true, // default truetop
                 keypress: true, // default true
             })
             mind.init()
 
-            // get a node
-            //this.$mindMapE('node-id')
+            document.querySelector('.map-canvas').addEventListener('mouseover', function (e) {
+                // 调整详细信息的位置
+                let target = e.target;
+                let boundingClientRect = target.getBoundingClientRect();
+                let detailDiv = document.querySelector('.detailDiv');
+                detailDiv.style.left = boundingClientRect.right + 'px';
+                detailDiv.style.top = boundingClientRect.top + 'px';
 
-            let allData = mind.getAllData();
-            console.log(allData)
+                if (target == this) return
 
+                //调整信息内容
+                let id = String(target.dataset.nodeid).substr(2);
+                let content = ""
+                if (vueApp.mindDetail[id] != undefined) {
+                    content = vueApp.mindDetail[id].content;
+                    editor.setMarkdown(content, false);
+                    // detailDiv.innerText = content;
+                    // detailDiv.style.backgroundColor = 'pink';
+                } else {
+                    detailDiv.style.left = '-99999px';
+                    detailDiv.style.top = '-99999px';
+                }
 
-            setInterval(function () {
-                console.log(mind.getAllDataString());
-            }, 10000)
-
-            let grpList = document.querySelectorAll('grp');
-            addEventListener('mouseover', function (e) {
 
             })
 
+            // 详细信息内容编辑器
+            editor = new this.$editor({
+                el: document.querySelector('.detailDiv'),
+                height: '100%',
+                initialEditType: 'markdown',
+                previewStyle: 'vertical',
+                initialValue: '',
+                plugins: [codeSyntaxHighlight],
+                events: {
+                    change() {
+                        let mdVal = editor.getMarkdown();
+                    },
+                }
+            });
 
         }
     }
@@ -114,7 +145,7 @@
 
         .menuDiv {
             float: left;
-            width: 15%;
+            width: 13%;
             height: 100%;
 
             .el-menu {
@@ -125,7 +156,7 @@
 
         .mapDiv {
             float: left;
-            width: 85%;
+            width: 87%;
             height: 100%;
 
             #map {
@@ -133,5 +164,14 @@
                 height: 100%;
             }
         }
+
+        .detailDiv {
+            position: fixed;
+            left: -9999px;
+            border-radius: 5px;
+            padding: 5px;
+            width: 1000px;
+        }
+
     }
 </style>
